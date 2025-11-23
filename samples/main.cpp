@@ -1,4 +1,4 @@
-﻿#include "multistack.h"
+﻿#include "../include/multistack.h"
 #include <iostream>
 
 int main() {
