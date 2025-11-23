@@ -7,15 +7,16 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(BUILD_TESTING "Build tests" ON)
 
+# Создаем интерфейсную библиотеку для multistack
 add_library(multistack INTERFACE)
 target_include_directories(multistack INTERFACE include)
-target_sources(multistack INTERFACE include/multistack.h)
 
+# Основное приложение
 add_executable(multistack_demo samples/main.cpp)
 target_link_libraries(multistack_demo multistack)
 
+# Тесты
 if(BUILD_TESTING)
-    # Автоматическая загрузка и сборка GTest
     include(FetchContent)
     FetchContent_Declare(
         googletest
@@ -34,14 +35,18 @@ if(BUILD_TESTING)
     
     include(GoogleTest)
     gtest_discover_tests(multistack_tests)
-    
-    message(STATUS "Using downloaded GTest")
 endif()
 
+# Компиляторные флаги
 if(MSVC)
     target_compile_options(multistack_demo PRIVATE /W4)
     if(BUILD_TESTING)
         target_compile_options(multistack_tests PRIVATE /W4)
+    endif()
+else()
+    target_compile_options(multistack_demo PRIVATE -Wall -Wextra)
+    if(BUILD_TESTING)
+        target_compile_options(multistack_tests PRIVATE -Wall -Wextra)
     endif()
 endif()
 
