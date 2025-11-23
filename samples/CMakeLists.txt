@@ -1,7 +1,9 @@
 # Пример программы
 add_executable(SampleProgram main.cpp)
 
-# ИСПРАВЛЕНИЕ: меняем multistack на QueueLibrary
+# ДОБАВЛЯЕМ: явно указываем путь к заголовкам
+target_include_directories(SampleProgram PRIVATE ${CMAKE_SOURCE_DIR}/include)
+
 target_link_libraries(SampleProgram QueueLibrary)
 
 # Устанавливаем выходную директорию
