@@ -1,4 +1,4 @@
-#include "../include/multistack.h"
+#include "multistack.h"
 #include <gtest/gtest.h>
 
 TEST(MultiStackTest, Constructor) {

@@ -1,4 +1,5 @@
-﻿#include "Multistack.h"
+﻿#include "multistack.h"
+#include <iostream>
 
 int main() {
   try {
