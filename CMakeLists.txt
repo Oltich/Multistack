@@ -7,11 +7,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Политики CMake
 cmake_policy(SET CMP0077 NEW)
 
+# ДОБАВЛЯЕМ: глобальный путь к заголовкам
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
 # Опции проекта
 option(BUILD_TESTING "Build tests" ON)
 option(BUILD_SAMPLES "Build samples" ON)
 
-# Поддиректории - ВАЖНО: сначала include, потом остальные
+# Поддиректории
 add_subdirectory(include)
 
 if(BUILD_TESTING)
