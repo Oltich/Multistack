@@ -1,5 +1,7 @@
 # Интерфейсная библиотека для заголовочных файлов
 add_library(QueueLibrary INTERFACE)
+
+# ИСПРАВЛЕНИЕ: указываем правильную директорию с заголовками
 target_include_directories(QueueLibrary INTERFACE 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:include>
