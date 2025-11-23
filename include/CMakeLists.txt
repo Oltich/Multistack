@@ -1,10 +1,9 @@
-# Интерфейсная библиотека для заголовочных файлов
+# Простая интерфейсная библиотека для заголовочных файлов
 add_library(QueueLibrary INTERFACE)
 
-# ИСПРАВЛЕНИЕ: указываем правильную директорию с заголовками
+# ИСПРАВЛЕНИЕ: убираем сложные генераторные выражения, просто указываем путь
 target_include_directories(QueueLibrary INTERFACE 
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-    $<INSTALL_INTERFACE:include>
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 # ДОБАВЛЯЕМ: псевдоним для обратной совместимости

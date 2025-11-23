@@ -1,8 +1,13 @@
 # Пример программы
 add_executable(SampleProgram main.cpp)
 
-# ДОБАВЛЯЕМ: явно указываем путь к заголовкам
-target_include_directories(SampleProgram PRIVATE ${CMAKE_SOURCE_DIR}/include)
+# Явно указываем абсолютный путь к заголовкам
+target_include_directories(SampleProgram PRIVATE 
+    ${CMAKE_SOURCE_DIR}/include
+)
+
+# Для отладки - выводим путь
+message(STATUS "Include path: ${CMAKE_SOURCE_DIR}/include")
 
 target_link_libraries(SampleProgram QueueLibrary)
 
