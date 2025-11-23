@@ -1,6 +1,8 @@
 # Пример программы
 add_executable(SampleProgram main.cpp)
-target_link_libraries(SampleProgram PRIVATE QueueLibrary)
+
+# ИСПРАВЛЕНИЕ: меняем multistack на QueueLibrary
+target_link_libraries(SampleProgram QueueLibrary)
 
 # Устанавливаем выходную директорию
 set_target_properties(SampleProgram PROPERTIES

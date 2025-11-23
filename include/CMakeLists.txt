@@ -5,6 +5,9 @@ target_include_directories(QueueLibrary INTERFACE
     $<INSTALL_INTERFACE:include>
 )
 
+# ДОБАВЛЯЕМ: псевдоним для обратной совместимости
+add_library(multistack ALIAS QueueLibrary)
+
 # Свойства компиляции
 target_compile_features(QueueLibrary INTERFACE cxx_std_17)
 
