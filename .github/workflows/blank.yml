@@ -1,0 +1,40 @@
+name: Run Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+        
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake g++ build-essential
+        
+    - name: Build project
+      run: |
+        mkdir -p build
+        cd build
+        cmake ..
+        make -j4
+        
+    - name: Find and run test executables
+      run: |
+        cd build
+        
+        # Ищем все исполняемые файлы с "test" в названии
+        find . -type f -executable -name "*test*" | while read test_file; do
+          echo "Running test: $test_file"
+          "$test_file" || echo "Test $test_file failed"
+        done
+        
+    - name: Run CTest
+      run: |
+        cd build
+        ctest --output-on-failure --verbose
